@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'org.aist.aide'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = 10
 
 repositories {
