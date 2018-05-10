@@ -1,10 +1,9 @@
 package org.aist.aide.generaltypeservice.domain.models.dtos;
 
-import org.aist.aide.generaltypeservice.domain.models.Types;
 
 public class TypeDto {
-    private Types type;
-    public TypeDto(Types type) {
+    private String type;
+    public TypeDto(String type) {
         this.type = type;
     }
 
@@ -12,7 +11,7 @@ public class TypeDto {
 
     }
 
-    public Types getType() {
+    public String getType() {
         return type;
     }
 }

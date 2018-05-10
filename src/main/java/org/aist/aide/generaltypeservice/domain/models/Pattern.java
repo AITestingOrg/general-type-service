@@ -1,10 +1,10 @@
 package org.aist.aide.generaltypeservice.domain.models;
 
-import org.springframework.data.annotation.Id;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
+
+import org.springframework.data.annotation.Id;
 
 public class Pattern {
     @Id
@@ -14,15 +14,15 @@ public class Pattern {
     private String pattern;
     @NotNull
     @NotEmpty
-    private Types type;
+    private String type;
 
-    public Pattern(UUID id, String pattern, Types type) {
+    public Pattern(UUID id, String pattern, String type) {
         this.id = id;
         this.pattern = pattern;
         this.type = type;
     }
 
-    public Pattern(String pattern, Types type) {
+    public Pattern(String pattern, String type) {
         this.pattern = pattern;
         this.type = type;
     }
@@ -35,7 +35,12 @@ public class Pattern {
         return pattern;
     }
 
-    public Types getType() {
+    public String getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return id.toString();
     }
 }

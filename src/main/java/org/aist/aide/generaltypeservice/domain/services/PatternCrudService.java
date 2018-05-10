@@ -57,9 +57,9 @@ public class PatternCrudService {
             LOGGER.warning(String.format("Pattern with id %s does not exist, cannot update.", pattern.getId()));
             throw new NotFoundException(String.format("No pattern found with id %s", pattern.getId()));
         }
-        patternToUpdate = patternRepository.findByType(pattern.getType().toString());
+        patternToUpdate = patternRepository.findByType(pattern.getType());
         if(patternToUpdate.isPresent()) {
-            LOGGER.warning(String.format("Pattern of type %s already exists.", pattern.getType().toString()));
+            LOGGER.warning(String.format("Pattern of type %s already exists.", pattern.getType()));
             throw new ValidationFailureException(String.format("Pattern matching type %s already exists, cannot create.", pattern.getType().toString()));
         }
         patternRepository.save(pattern);
