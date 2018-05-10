@@ -1,8 +1,8 @@
 package org.aist.aide.generaltypeservice.domain.models;
 
+import java.util.UUID;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
