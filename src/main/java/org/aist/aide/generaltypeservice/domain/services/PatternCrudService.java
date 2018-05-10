@@ -33,13 +33,14 @@ public class PatternCrudService {
         return patternRepository.findAll();
     }
 
-    public void createPattern(Pattern pattern) throws ValidationFailureException {
+    public UUID createPattern(Pattern pattern) throws ValidationFailureException {
         var existingPattern = patternRepository.findByType(pattern.getType().toString());
         if(existingPattern.isPresent()) {
             LOGGER.warning(String.format("Pattern of type %s already exists.", pattern.getType().toString()));
             throw new ValidationFailureException(String.format("Pattern matching type %s already exists, cannot create.", pattern.getType().toString()));
         }
         patternRepository.save(pattern);
+        return pattern.getId();
     }
 
     public void deletePattern(UUID id) throws NotFoundException {
@@ -58,7 +59,7 @@ public class PatternCrudService {
             throw new NotFoundException(String.format("No pattern found with id %s", pattern.getId()));
         }
         patternToUpdate = patternRepository.findByType(pattern.getType());
-        if(patternToUpdate.isPresent()) {
+        if(patternToUpdate.isPresent() && patternToUpdate.get().getId() != pattern.getId()) {
             LOGGER.warning(String.format("Pattern of type %s already exists.", pattern.getType()));
             throw new ValidationFailureException(String.format("Pattern matching type %s already exists, cannot create.", pattern.getType().toString()));
         }
