@@ -139,7 +139,7 @@ public class PatternCrudServiceTests {
     public void givenTheTypeExist_WhenDeletingThePattern_PatternIsDeleted() throws NotFoundException {
         // arrange
         var type = "Phone";
-        var pattern = new Pattern(UUID.randomUUID(),"regex", type);
+        var pattern = new Pattern("#$%^","regex", type);
         when(patternRepository.findById(pattern.getId())).thenReturn(Optional.ofNullable(pattern));
 
         // act
@@ -154,7 +154,7 @@ public class PatternCrudServiceTests {
             throws NotFoundException {
         // arrange
         var type = "Phone";
-        var id = UUID.randomUUID();
+        var id = "#$%^";
         when(patternRepository.findById(id)).thenReturn(Optional.ofNullable(null));
 
         // act
@@ -166,7 +166,7 @@ public class PatternCrudServiceTests {
             throws ValidationFailureException, NotFoundException {
         // arrange
         var type = "Phone";
-        var pattern = new Pattern(UUID.randomUUID(),"regex", type);
+        var pattern = new Pattern("#$%^","regex", type);
         when(patternRepository.findById(pattern.getId())).thenReturn(Optional.of(pattern));
         var update = new Pattern(pattern.getId(), "regex", "Test");
 
@@ -182,7 +182,7 @@ public class PatternCrudServiceTests {
             throws NotFoundException, ValidationFailureException {
         // arrange
         var type = "Phone";
-        var pattern = new Pattern(UUID.randomUUID(),"regex", type);
+        var pattern = new Pattern("#$%^","regex", type);
         when(patternRepository.findById(pattern.getId())).thenReturn(Optional.ofNullable(null));
 
         // act
@@ -195,8 +195,8 @@ public class PatternCrudServiceTests {
         // arrange
         var type = "Phone";
         var newType = "Test";
-        var pattern = new Pattern(UUID.randomUUID(),"regex", type);
-        var otherPattern = new Pattern(UUID.randomUUID(), "regex", newType);
+        var pattern = new Pattern("#$%^","regex", type);
+        var otherPattern = new Pattern("#$%^245", "regex", newType);
         when(patternRepository.findById(pattern.getId())).thenReturn(Optional.of(pattern));
         when(patternRepository.findByType(newType)).thenReturn(Optional.of(otherPattern));
         var update = new Pattern(pattern.getId(), "regex", "Test");

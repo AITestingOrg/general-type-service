@@ -1,7 +1,6 @@
 package org.aist.aide.generaltypeservice.service.controllers;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Logger;
 import javax.validation.Valid;
 
@@ -54,7 +53,7 @@ public class TypeController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deletePattern(@RequestParam UUID id) {
+    public ResponseEntity deletePattern(@RequestParam String id) {
         LOGGER.info(String.format("DELETE request for Pattern with id %s.", id));
         try {
             patternCrudService.deletePattern(id);

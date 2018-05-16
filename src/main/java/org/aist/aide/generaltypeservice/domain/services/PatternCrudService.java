@@ -1,7 +1,6 @@
 package org.aist.aide.generaltypeservice.domain.services;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.aist.aide.generaltypeservice.domain.exceptions.NotFoundException;
@@ -33,7 +32,7 @@ public class PatternCrudService {
         return patternRepository.findAll();
     }
 
-    public UUID createPattern(Pattern pattern) throws ValidationFailureException {
+    public String createPattern(Pattern pattern) throws ValidationFailureException {
         var existingPattern = patternRepository.findByType(pattern.getType().toString());
         if (existingPattern.isPresent()) {
             LOGGER.warning(String.format("Pattern of type %s already exists.", pattern.getType().toString()));
@@ -45,7 +44,7 @@ public class PatternCrudService {
         return pattern.getId();
     }
 
-    public void deletePattern(UUID id) throws NotFoundException {
+    public void deletePattern(String id) throws NotFoundException {
         var pattern = patternRepository.findById(id);
         if (!pattern.isPresent()) {
             LOGGER.warning(String.format("Pattern with id %s does not exist, cannot delete.", id));
