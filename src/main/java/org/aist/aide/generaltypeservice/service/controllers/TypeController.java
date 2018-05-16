@@ -1,8 +1,8 @@
 package org.aist.aide.generaltypeservice.service.controllers;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.UUID;
+import java.util.logging.Logger;
 import javax.validation.Valid;
 
 import org.aist.aide.generaltypeservice.domain.exceptions.NotFoundException;

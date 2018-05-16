@@ -1,5 +1,9 @@
 package org.aist.aide.generaltypeservice.unit;
 
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+
 import org.aist.aide.generaltypeservice.domain.models.Pattern;
 import org.aist.aide.generaltypeservice.domain.strategies.RegexTypeResolutionStrategy;
 import org.aist.aide.generaltypeservice.service.repositories.PatternRepository;
@@ -10,10 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-
-import static org.mockito.Mockito.when;
-
 public class RegexTypeResolutionStrategyTest {
     private static final String str = "String";
     @Mock
@@ -23,7 +23,7 @@ public class RegexTypeResolutionStrategyTest {
     private RegexTypeResolutionStrategy regexTypeResolutionStrategy;
 
     @Before
-    public void initMocks(){
+    public void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
 

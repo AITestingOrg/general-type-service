@@ -1,5 +1,13 @@
 package org.aist.aide.generaltypeservice.unit;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.aist.aide.generaltypeservice.domain.exceptions.NotFoundException;
 import org.aist.aide.generaltypeservice.domain.exceptions.ValidationFailureException;
 import org.aist.aide.generaltypeservice.domain.models.Pattern;
@@ -15,14 +23,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PatternCrudServiceTests {
@@ -33,12 +33,13 @@ public class PatternCrudServiceTests {
     private PatternCrudService patternCrudService;
 
     @Before
-    public void initMocks(){
+    public void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void givenAPatternExists_WhenRequestingThePattern_ThePatternIsReturned() throws NotFoundException {
+    public void givenAPatternExists_WhenRequestingThePattern_ThePatternIsReturned()
+            throws NotFoundException {
         // arrange
         var type = "Phone";
         var pattern = new Pattern("regex", type);
@@ -52,7 +53,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test(expected = NotFoundException.class)
-    public void givenAPatternDoesNotExists_WhenRequestingThePattern_NotFoundExceptionThrown() throws NotFoundException {
+    public void givenAPatternDoesNotExists_WhenRequestingThePattern_NotFoundExceptionThrown()
+            throws NotFoundException {
         // arrange
         var type = "Phone";
         when(patternRepository.findByType(type)).thenReturn(Optional.ofNullable(null));
@@ -107,7 +109,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test
-    public void givenTheTypeDoesNotExist_WhenCreatingThePattern_ThePatternIsSaved() throws ValidationFailureException {
+    public void givenTheTypeDoesNotExist_WhenCreatingThePattern_ThePatternIsSaved()
+            throws ValidationFailureException {
         // arrange
         var type = "Phone";
         var pattern = new Pattern("regex", type);
@@ -121,7 +124,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test(expected = ValidationFailureException.class)
-    public void givenTheTypeExist_WhenCreatingThePattern_ValidationExceptionIsThrown() throws ValidationFailureException {
+    public void givenTheTypeExist_WhenCreatingThePattern_ValidationExceptionIsThrown()
+            throws ValidationFailureException {
         // arrange
         var type = "Phone";
         var pattern = new Pattern("regex", type);
@@ -146,7 +150,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test(expected = NotFoundException.class)
-    public void givenTheTypeDoesNotExist_WhenDeletingThePattern_NotFoundExceptionThrown() throws NotFoundException {
+    public void givenTheTypeDoesNotExist_WhenDeletingThePattern_NotFoundExceptionThrown()
+            throws NotFoundException {
         // arrange
         var type = "Phone";
         var id = UUID.randomUUID();
@@ -157,7 +162,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test
-    public void givenTheTypeExist_WhenUpdatingThePattern_PatternIsUpdated() throws ValidationFailureException, NotFoundException {
+    public void givenTheTypeExist_WhenUpdatingThePattern_PatternIsUpdated()
+            throws ValidationFailureException, NotFoundException {
         // arrange
         var type = "Phone";
         var pattern = new Pattern(UUID.randomUUID(),"regex", type);
@@ -172,7 +178,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test(expected = NotFoundException.class)
-    public void givenTheTypeDoesNotExist_WhenUpdatingThePattern_NotFoundExceptionThrown() throws NotFoundException, ValidationFailureException {
+    public void givenTheTypeDoesNotExist_WhenUpdatingThePattern_NotFoundExceptionThrown()
+            throws NotFoundException, ValidationFailureException {
         // arrange
         var type = "Phone";
         var pattern = new Pattern(UUID.randomUUID(),"regex", type);
@@ -183,7 +190,8 @@ public class PatternCrudServiceTests {
     }
 
     @Test(expected = ValidationFailureException.class)
-    public void givenTheNewTypeExists_WhenUpdatingThePattern_ValidationExceptionThrown() throws NotFoundException, ValidationFailureException {
+    public void givenTheNewTypeExists_WhenUpdatingThePattern_ValidationExceptionThrown()
+            throws NotFoundException, ValidationFailureException {
         // arrange
         var type = "Phone";
         var newType = "Test";
