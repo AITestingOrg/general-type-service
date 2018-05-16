@@ -35,7 +35,7 @@ public class TypeResolutionControllerTests {
     @After
     public void tearDown() {
         var patterns = typeController.getPatterns();
-        for(var pattern: patterns.getBody()) {
+        for (var pattern: patterns.getBody()) {
             typeController.deletePattern(pattern.getId());
         }
     }
