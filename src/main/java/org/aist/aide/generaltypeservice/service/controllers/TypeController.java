@@ -1,5 +1,9 @@
 package org.aist.aide.generaltypeservice.service.controllers;
 
+import java.util.List;
+import java.util.logging.Logger;
+import javax.validation.Valid;
+
 import org.aist.aide.generaltypeservice.domain.exceptions.NotFoundException;
 import org.aist.aide.generaltypeservice.domain.exceptions.ValidationFailureException;
 import org.aist.aide.generaltypeservice.domain.models.Pattern;
@@ -9,15 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.UUID;
-import java.util.logging.Logger;
-
 @RestController
 @RequestMapping("/api/v1/type")
 public class TypeController {
-    private final static Logger LOGGER = Logger.getLogger(TypeController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TypeController.class.getName());
     private PatternCrudService patternCrudService;
 
     public TypeController(@Autowired PatternCrudService patternCrudService) {
@@ -54,7 +53,7 @@ public class TypeController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deletePattern(@RequestParam UUID id) {
+    public ResponseEntity deletePattern(@RequestParam String id) {
         LOGGER.info(String.format("DELETE request for Pattern with id %s.", id));
         try {
             patternCrudService.deletePattern(id);
