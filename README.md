@@ -23,3 +23,9 @@ Note, you will need to have Mongo running for the integration tests.
 
 # Docker
 The project includes a Docker-Compose script for running the entire application. Swagger documentation and seeded DB will be added in the future to help run out of the box.
+
+To run from docker:
+* Make sure that the Docker is installed and running.
+* Assemble this project. Or ```./gradlew assemble``` from terminal.
+* Run ```docker-compose up --build``` from the root project.
+* On another terminal run ```docker ps``` to see assigned ports.
