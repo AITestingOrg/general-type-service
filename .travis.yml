@@ -1,19 +1,23 @@
 language: java
-
 sudo: false
 dist: trusty
-
 services: mongodb
-
-# Get latest install-jdk.sh script
 before_install:
-  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-
+- docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
+- wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
 matrix:
   include:
-# Java 10 "Oracle JDK" (not yet provided by Travis CI)
-    - env: JDK='Oracle JDK 10'
-      install: . ./install-jdk.sh -F 10 -L BCL
-
+  - env: JDK='Oracle JDK 10'
+    install: ". ./install-jdk.sh -F 10 -L BCL"
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+env:
+  global:
+  - secure: 6lUNwNoGSxR/im0EpcDOdEyBlPWn0EMahkKmujT3nVe2+gsdw1sQIkPRVh+tMxPqkDCrGHCn4pP4Sj8Oic1mxdZiBU69+iknQg2YlloqPjqHclRhFHpmIZn3QMjc7obnppZqhNPZl0yTxw78rDqxFLe3n4j6Lh4060gAjbgS2nFTX+fU5wMjklboOjmApqBMUTlLslgCfrt9ZE/CoT4aOJAA8sKAafpqE2R90nykUz+ZN3R7aa/IxtMyITfSualfgJQE5eIm32pivEwMB4gRChPA7l53P1TLpGL7xtEsn2fOjL2OQHNNFiqDV50xA8gJVIfgQQ58Sn/h4WWNK4XOeil1GFgoDDP0rYMeeMVAG6y1+vpWcVClqdoXmTR41VCX1glT6X12dp373uCRyFfXixEDORi2zYzaN5ipGsxttKNPEUqhGJNFTOCgQQ2EG6x2XQyQ0+2+NNuu27OAdK+hxcMmUfYKFFITIYwKbZujwAgi/OLKpcEGnRtqAcUn4DmUIWERYpgaY80j/PtTkEfdzin8dEmIUvQz+dx8wMMueJwOcrNk9dLH4OQMV4gOoOf/1Tvq+zmyc38pxOi4LUVOApYYNJKUVaJf81T9Ugm5pH8RMt5HGehdJNVyRCA+bUBJXJz2RYmQmCIed9mmUSS/dvgEr8UesJ3N2NPsmwHjj/E=
+  - secure: QB6xivujmZIgI5/Gk3I1jSbuptQ5DoixrRkMxKLneYdqTW7cl6454z7dN0m4Xq6lRJhO9sbL5pzYrTs411G5sBgkCclV2G+0RaX48At2zyqrTAzr21yBsyqCRcHrBtssOQPtCYyZ87QVriIoIr7gHBXnU1OwdE/OPGx5X9baMBmH3hWzQ7uNnPH3v31/k0rJmAxFP8CQV5BKzdsoImoHX45Gk4ibOk2HZLfbjsWRVEO7d0/57zN1H12/qbkCXNTllNUqn9HLMIeZRra51YlJp/lQDxvTAOboJpuuVRQSyvj/WWz0oEgnB/uUgk0ody8NfE1pBtkImN/BHVB3GLedu3bYmljAGyIU6vlfGGQ23GQ6SY7HmhVWB03KRFDM9uRpgyxofytMgI2MxvzB8FkC5cEj68MG6mO7VkTudsc8NnMp6UnUOLtUQ93cXSv2bY48QhP3acwcRUNDJugZO18auxGubYSfOvzaKDI6hyTw/HqkwqSfXvjL+3TguP2O6tsMpt8hhiAxYTaIfEJHHgJhqO+DSb/awwhH0Hn0LdnCjwzde7KKAaGUfDXcEGtCF0gbOixHZtmCj8FPSckSv/uozP3Og9BO+x499N1seaZjwqe80x+hcXTFTUurEYHFmr/yp/Dxirumk0kgT2DL7ASxJjn24u2Ye1FuuvlBuzGu8gw=
+after_success:
+- docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
+- set +e
+- export REPO=aista/general-type-service
+- docker build -f Dockerfile -t $REPO:$TRAVIS_TAG .
+- docker push $REPO
