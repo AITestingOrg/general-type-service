@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.aist.aide.generaltypeservice.domain.exceptions.NotFoundException;
 import org.aist.aide.generaltypeservice.domain.exceptions.ValidationFailureException;
