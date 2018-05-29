@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.validation.Valid;
 
-import org.aist.aide.generaltypeservice.domain.exceptions.NotFoundException;
-import org.aist.aide.generaltypeservice.domain.exceptions.ValidationFailureException;
+import org.aist.aide.formexpert.common.exceptions.NotFoundException;
+import org.aist.aide.formexpert.common.exceptions.ValidationFailureException;
 import org.aist.aide.generaltypeservice.domain.models.Pattern;
 import org.aist.aide.generaltypeservice.domain.services.PatternCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
