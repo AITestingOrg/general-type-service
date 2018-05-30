@@ -1,4 +1,6 @@
 spring:
+  profiles:
+      include: default
   data:
     mongodb:
       uri: mongodb://mongo/general_type_service # Mongo database URI. When set, host and port are ignored.
