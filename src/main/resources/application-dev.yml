@@ -1,6 +1,6 @@
 spring:
   profiles:
-      include: default
+    include: default
   data:
     mongodb:
       uri: mongodb://mongo/general_type_service # Mongo database URI. When set, host and port are ignored.
@@ -8,6 +8,7 @@ spring:
       enabled: true # Enable Mongo repositories.
       username: user # Login user of the mongo server.
       password: pass # Login password of the mongo server.
+
 eureka:
   client:
     serviceUrl:
