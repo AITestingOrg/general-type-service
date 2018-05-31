@@ -30,11 +30,12 @@ ext {
 }
 
 dependencies {
-	compile files("libs/form-expert-common-1.0.jar")
-	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile files("libs/form-expert-common-1.0.jar")
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
